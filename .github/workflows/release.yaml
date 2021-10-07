@@ -49,13 +49,6 @@ jobs:
         tags: |
           type=raw,${{ matrix.version }}
 
-    - name: Setup Environment - Set variable `check-if-prelease`
-      id: check-if-prelease
-      uses: actions-ecosystem/action-regex-match@v2
-      with:
-        text: ${{ matrix }}
-        regex: ^refs\/tags\/v?[0-9]+\.[0-9]+\.[0-9]+\-
-
     - name: Build
       uses: docker/build-push-action@v2
       with:
@@ -71,6 +64,5 @@ jobs:
     - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
-        prerelease: ${{ steps.check-if-prelease.outputs.match != '' }}
         fail_on_unmatched_files: true
         discussion_category_name: Announcements
