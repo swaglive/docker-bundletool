@@ -60,9 +60,3 @@ jobs:
         tags: ${{ steps.meta.outputs.tags }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
-
-    - name: Create Release
-      uses: softprops/action-gh-release@v1
-      with:
-        fail_on_unmatched_files: true
-        discussion_category_name: Announcements
